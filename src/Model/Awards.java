@@ -19,5 +19,5 @@ public class Awards implements Serializable{
 	private Date date;
 	private String organization;
 	private String awardType;
-	private String movieID;
+	private Integer movieID;
 }
