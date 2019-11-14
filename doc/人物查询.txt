@@ -1,0 +1,25 @@
+人物查询--获奖表未设计
+1.显示人物详细信息（以饺子为例）
+input 饺子
+
+select *
+from person
+where name = '饺子'
+
+2.获奖信息
+input 饺子
+
+select date, organization ,awardType,movieName
+from person ,Awards,movie
+where person.personID=Awards.personID
+and Awards.movieID = movie.movieID
+and person.name='饺子'
+
+3.参演作品
+input 饺子
+
+select movieName,occupation,character
+from Movie_Person,movie,person
+where movie.movieID = Movie_Person.movieID
+and person.personID = Movie_Person.personID
+and person.name='饺子'

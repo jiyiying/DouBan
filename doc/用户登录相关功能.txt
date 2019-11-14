@@ -1,0 +1,35 @@
+一、用户登录
+input (userName,password)
+
+SELECT * 
+FROM [user]
+WHERE userName = 'lisa' and password = '666'
+
+"SELECT * 
+FROM [user] 
+WHERE userName ='"+getterUserName()+"'  and password = '"+getterPwd()+"'";
+
+if ==null print("用户名或密码错误")
+else print 全部信息
+
+
+二、用户注册
+
+input  (userName, password ,telphone)
+
+SELECT * 
+FROM [user]
+WHERE userName = '"+getterUserName()+"'";
+
+if != null print("用户名已存在")
+else 
+{
+	insert into [user](userName,password,phoneNumber) values('zseqsc','123456','12121212345')
+	返回一行收到影响
+}
+
+三、用户信息更新
+
+update [user]
+set phoneNumber='1590221613',email='123@126.com',wechat='123456',qq='1378792672',weibo='11'
+where userName ='zseqsc' and password='123456'

@@ -1,0 +1,8 @@
+电影评分降序
+
+select movieID,AVG(score) as average
+from (select movieID,score,[date],userID from shortreview
+union
+select movieID,score,[date],userID from Review) temp
+group by movieID 
+order by average DESC

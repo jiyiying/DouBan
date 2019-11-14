@@ -1,0 +1,60 @@
+电影查询功能：（以“哪吒之魔童降世”为例）
+1.显示电影表的相关信息(查询某个电影)
+input (movieName)
+a.显示电影表内容：
+select * 
+from movie
+where movieName='哪吒之魔童降世'
+
+if == null print("没有收录此电影信息")
+else print 
+
+b.显示导演
+select name
+from person,Movie_person,movie
+where person.personID=Movie_Person.personID
+	and Movie_Person.occupation='导演'
+	and movie.movieID=Movie_Person.movieID
+	and movie.movieName = '哪吒之魔童降世'
+c.显示演员
+
+select name
+from person,Movie_person,movie
+where person.personID=Movie_Person.personID
+	and Movie_Person.occupation='演员'
+	and movie.movieID=Movie_Person.movieID
+	and movie.movieName = '哪吒之魔童降世'
+d.评分（短评+影评）
+select movieID,AVG(score)*2 as 平均分
+from (select movieID,score,[date],userID from shortreview
+union
+select movieID,score,[date],userID from Review) temp
+group by movieID
+
+e.电影短评
+select * 
+from shortreview join movie 
+on shortreview.movieID = movie.movieID
+where movie.movieName = '哪吒之魔童降世'
+
+f.影评  ？？
+select * 
+from Review join movie
+on movie.movieID = Review.movieID
+where movieName = '哪吒之魔童降世'
+影评下的评论（subReview）
+select *
+from SubReview join Review
+on Review.reviewID = SubReview.parentID 
+join movie
+on movie.movieID = SubReview.movieID
+where SubReview.parentType =0 
+and movie.movieName='哪吒之魔童降世'
+
+
+select *
+from SubReview 
+join movie
+on movie.movieID = SubReview.movieID
+where SubReview.parentType =1 
+and movie.movieName='哪吒之魔童降世'
