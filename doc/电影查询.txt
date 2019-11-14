@@ -25,11 +25,16 @@ where person.personID=Movie_Person.personID
 	and movie.movieID=Movie_Person.movieID
 	and movie.movieName = '哪吒之魔童降世'
 d.评分（短评+影评）
-select movieID,AVG(score)*2 as 平均分
+select movieName ,AVERAGE
+FROM (select movieID,CAST(AVG(score) as DECIMAL(13,2)) as AVERAGE
 from (select movieID,score,[date],userID from shortreview
 union
-select movieID,score,[date],userID from Review) temp
-group by movieID
+select movieID,score,[date],userID from Review) temp  
+group by movieID) as a
+join movie
+on a.movieID = movie.movieID
+where movieName = '哪吒之魔童降世'
+
 
 e.电影短评
 select * 
