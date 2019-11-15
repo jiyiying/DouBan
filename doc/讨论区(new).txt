@@ -1,0 +1,26 @@
+讨论区
+
+1.按热度显示讨论主题
+select topic,responseCount
+from discuss
+order by responseCount DESC
+
+打开某个讨论帖
+input（讨论主题）
+
+显示讨论内容
+select topic,comment,date,responseCount
+from discuss
+where topic = '哪吒？！'
+
+显示子讨论内容
+WITH CTE AS 
+( 
+    SELECT  * ,CAST(RIGHT('000' + CAST([discussID] AS VARCHAR), 3) AS VARCHAR(MAX)) AS sort FROM SubDiscuss 
+    WHERE parentDiscussID IS NULL
+    UNION ALL
+    SELECT SubDiscuss.* ,CAST(sort + RIGHT('000' + CAST(SubDiscuss.discussID AS VARCHAR),3) AS VARCHAR(MAX)) AS sort
+    FROM CTE
+    INNER JOIN SubDiscuss ON CTE.discussID = SubDiscuss.parentDiscussID
+)
+SELECT distinct * FROM CTE where topicID=24  ORDER BY sort

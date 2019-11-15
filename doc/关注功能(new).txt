@@ -1,0 +1,48 @@
+关注功能<------需要新增关注表（关注者ID,被关注者ID）
+
+添加关注（已知两人ID）
+
+insert into follow(followerID,followedID)
+values(7,8)
+
+取消关注(已知自己ID)
+
+delete from follow
+where (followedID = (select userID 
+		from [user]
+		where userName='zseqsc')
+		and followerID = 8)
+
+查看全部关注（已知自己ID）
+select userName,userID
+from [user],follow
+where followedID = userID
+and followerID = 3
+
+查看UP主的影评
+
+select title
+from Review
+where userID=8
+
+然后可以根据标题查看到该封影评（与电影信息中影评模块相同）-----不再测试
+
+查看UP主的讨论主题
+
+select topic
+from discuss
+where userID=8
+
+然后可以根据标题查看到讨论帖（与讨论模块相同）------不再测试
+
+
+查看自己被谁关注（已知自己ID）
+
+select userName,userID
+from [user],follow
+where followerID = userID
+and followedID = 3
+
+
+
+
