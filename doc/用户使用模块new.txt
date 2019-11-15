@@ -50,3 +50,7 @@ values (1,24,6,12,'2000-01-02','回复啥玩意')
 
 insert into SubDiscuss(parentDiscussID,discussType,userID,comment,date,likeCount)
 values (10,'discuss',5,'物业是','2000-01-01',0)
+
+update discuss
+set responseCount = responseCount+1
+where topicID=24
