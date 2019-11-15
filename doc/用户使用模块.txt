@@ -1,0 +1,25 @@
+用户使用模块
+
+1.发布短评
+insert into shortreview(userID,movieID,score,wantToWatch,comment,tag,likeCount,date,visibility)
+values (9,8,4.00,0,'太棒了','惊悚',0,'1999-01-19',0)
+
+2.发布影评
+insert into Review(userID,movieID,score,date,title,comment,likeCount,dislikeCount)
+values (9,8,4.00,'1999-01-19','<<哪吒>>影评','窜改原著',0,0)
+
+3.发布讨论
+insert into discuss(userID,movieID,topic,comment,date,responseCount)
+values (9,8,'哪吒？！','这真的是我认识的哪吒吗','2000-01-01',0)
+
+发布回复
+
+1.回复影评
+
+insert into SubReview(parentType,parentID,userID,movieID,commentDate,comment)
+values (1,24,6,12,'2000-01-02','回复啥玩意')
+
+2.回复讨论
+
+insert into SubDiscuss(parentDiscussID,discussType,userID,comment,date,likeCount)
+values (10,'discuss',5,'物业是','2000-01-01',0)
