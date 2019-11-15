@@ -15,7 +15,7 @@ public class Person implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	private int personID;
+	private integer personID;
 	private String name;
 	private String photo;
 	private String gender;
