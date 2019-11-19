@@ -25,5 +25,5 @@ public class Movie implements Serializable{
 	private Integer length;
 	private String profile;
 	
-	private ArrayList<Integer> actors;//电影人物关系表
+	
 }

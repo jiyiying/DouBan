@@ -18,10 +18,10 @@ public class ShortReview implements Serializable{
 	private Integer userID;
 	private Integer movieID;
 	private Double score;
-	private boolean wantToWatch;
+	private Boolean wantToWatch;
 	private String comment;
 	private String tag;
 	private Integer likeCount;
 	private Date date;
-	private boolean visibility;
+	private Boolean visibility;
 }

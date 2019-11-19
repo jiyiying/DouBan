@@ -25,5 +25,5 @@ public class Review implements Serializable {
 	private String comment;
 	private Integer likeCount;
 	private Integer dislikeCount;
-	private Integer replyNumber;
+	
 }

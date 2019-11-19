@@ -9,7 +9,7 @@ import Factory.DaoFactory;
 import Model.User;
 
 public class LoginTest {
-	public static void main(String[] args) {
+	public static void main(String[] args) throws SQLException {
 		Scanner scan = new Scanner(System.in);
 		String userName = scan.next();
 		String password = scan.next();
@@ -19,18 +19,16 @@ public class LoginTest {
 		user.setUserName(userName);
 		user.setPassword(password);
 
-		try {
-			ResultSet rs = userdao.search("SELECT * FROM [user] WHERE userName =\'" + user.getUserName()
-					+ "\' AND password = \'" + user.getPassword() + "\'");
+		ResultSet rs = userdao.search("SELECT * FROM [user] WHERE userName =\'" 
+				+ user.getUserName()		
+				+ "\' AND password = \'" 
+				+ user.getPassword() + "\'");
 
-			if(!rs.next()) {
-				System.out.println("用户名或密码错误!");
-			}else {
-				System.out.println("登录成功！"+"登录用户："+rs.getString("userName"));
-			}
-		} catch (SQLException e) {
-
-			e.printStackTrace();
+		if (!rs.next()) {
+			System.out.println("用户名或密码错误!");
+		} else {
+			System.out.println("登录成功！" + "登录用户：" + rs.getString("userName"));
 		}
+
 	}
 }
