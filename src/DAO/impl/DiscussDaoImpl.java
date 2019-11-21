@@ -15,14 +15,10 @@ public class DiscussDaoImpl extends JDBCUtil implements DiscussDao {
 	public void insert(Discuss discuss) throws SQLException {
 		Connection conn = JDBCUtil.getConnection();
 		Statement stmt = conn.createStatement();
-		try {
-			String sql = "";
 
-			stmt.execute(sql);
-		} catch (SQLException e) {
+		String sql = "";
 
-			e.printStackTrace();
-		}
+		stmt.execute(sql);
 
 	}
 
@@ -30,63 +26,50 @@ public class DiscussDaoImpl extends JDBCUtil implements DiscussDao {
 		PreparedStatement pstmt = null;
 		Connection conn = JDBCUtil.getConnection();
 
-		try {
-			String sql = "INSERT INTO Discuss(topicID,userID,movieID,topic,comment,date,responseCount)"
-					+ "VALUES(?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO Discuss(topicID,userID,movieID,topic,comment,date,responseCount)"
+				+ "VALUES(?,?,?,?,?,?,?)";
 
-			SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, discuss.getTopicID());
-			pstmt.setInt(2, discuss.getUserID());
-			pstmt.setInt(3, discuss.getMovieID());
-			pstmt.setString(4, discuss.getTopic());
-			pstmt.setString(5, discuss.getComment());
-			pstmt.setString(6, df.format(discuss.getDate()));
-			pstmt.setInt(7, discuss.getResponseCount());
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setInt(1, discuss.getTopicID());
+		pstmt.setInt(2, discuss.getUserID());
+		pstmt.setInt(3, discuss.getMovieID());
+		pstmt.setString(4, discuss.getTopic());
+		pstmt.setString(5, discuss.getComment());
+		pstmt.setString(6, df.format(discuss.getDate()));
+		pstmt.setInt(7, discuss.getResponseCount());
 
-			pstmt.executeUpdate();
+		pstmt.executeUpdate();
 
-			pstmt.close();
+		pstmt.close();
 
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
 	}
 
 	public void delete(Discuss discuss) throws SQLException {
 		Connection conn = JDBCUtil.getConnection();
 		Statement stmt = conn.createStatement();
-		try {
-			String sql = "";
-			stmt.execute(sql);
-		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}
+		String sql = "";
+		stmt.execute(sql);
+
 	}
 
 	public void update(String sql) throws SQLException {
 		Connection conn = JDBCUtil.getConnection();
 		Statement stmt = conn.createStatement();
-		try {
-			stmt.execute(sql);
-		} catch (SQLException e) {
 
-			e.printStackTrace();
-		}
+		stmt.execute(sql);
+
 	}
 
 	public ResultSet search(String sql) throws SQLException {
 		ResultSet rs = null;
 		Connection conn = JDBCUtil.getConnection();
 		Statement stmt = conn.createStatement();
-		try {
-			rs = stmt.executeQuery(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+
+		rs = stmt.executeQuery(sql);
+
 		return rs;
 	}
 

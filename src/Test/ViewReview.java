@@ -10,7 +10,7 @@ import Factory.DaoFactory;
 public class ViewReview {
 	public static void main(String[] args) throws SQLException {
 		UserDao userdao=DaoFactory.getUserDaoImpl();
-		Integer movieID=12;//ÄÄß¸µÄ
+		Integer movieID=8;
 		ResultSet rs=userdao.search("select * "
 				+"from Review join movie "
 				+"on movie.movieID = Review.movieID "

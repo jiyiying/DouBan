@@ -15,7 +15,9 @@ public class HotTagsTest {
 				+"where tagTable.movieID = movie.movieID "
 				+"and movie.movieID = "+movieID
 				+" order by count DESC");
+		System.out.println("movieID为"+movieID+"的常用标签：");
 		while(rs.next()) {
+			
 			System.out.println(rs.getString("tag"));
 		}
 		

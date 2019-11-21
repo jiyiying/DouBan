@@ -1,6 +1,7 @@
 package DAO.impl;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,83 +12,55 @@ import DAO.PersonDao;
 import Model.Person;
 import Util.JDBCUtil;
 
-public class PersonDaoImpl extends JDBCUtil implements PersonDao{
+public class PersonDaoImpl extends JDBCUtil implements PersonDao {
 
 	public void insert(Person person) throws SQLException {
-		Connection conn=JDBCUtil.getConnection();
-		Statement stmt=conn.createStatement();
-		try {
-			String sql = "";
+		PreparedStatement pstmt = null;
+		Connection conn = JDBCUtil.getConnection();
 
-			stmt.execute(sql);
-		} catch (SQLException e) {
+		String sql = "INSERT INTO Person(name,photo,gender,birthday,birthplace,profile)" + "VALUES(?,?,?,?,?,?)";
+		long lg = person.getBirthday().getTime();
 
-			e.printStackTrace();
-		}
-	}
+		pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, person.getName());
+		pstmt.setString(2, person.getPhoto());
+		pstmt.setString(3, person.getGender());
+		pstmt.setDate(4, new Date(lg));
+		pstmt.setString(5, person.getBirthplace());
+		pstmt.setString(6, person.getProfile());
 
-	public void insertP(Person person) throws SQLException {
-		PreparedStatement pstmt=null;
-		Connection conn=JDBCUtil.getConnection();
-		
-		try {
-			String sql = "INSERT INTO Person(personID,name,photo,gender,birthday,birthplace,profile)" + "VALUES(?,?,?,?,?,?,?)";
-			
-			SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd");
-			
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, person.getPersonID());
-			pstmt.setString(2, person.getName());
-			pstmt.setString(3, person.getPhoto());
-			pstmt.setString(4, person.getGender());
-			pstmt.setString(5, df.format(person.getBirthday()));
-			pstmt.setString(6, person.getBirthplace());
-			pstmt.setString(7, person.getProfile());
-	
+		pstmt.executeUpdate();
 
-			pstmt.executeUpdate();
-			
-			pstmt.close();
+		pstmt.close();
+		System.out.println("添加人物信息成功！");
 
-		} catch (SQLException e) {
-
-			e.printStackTrace();
-		}
 	}
 
 	public void delete(Person person) throws SQLException {
-		Connection conn=JDBCUtil.getConnection();
-		Statement stmt=conn.createStatement();
-		try {
-			String sql="";
-			stmt.execute(sql);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		Connection conn = JDBCUtil.getConnection();
+		Statement stmt = conn.createStatement();
+
+		String sql = "";
+		stmt.execute(sql);
+
 	}
 
 	public void update(String sql) throws SQLException {
-		Connection conn=JDBCUtil.getConnection();
-		Statement stmt=conn.createStatement();
-		try {
-			stmt.execute(sql);
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-		}
+		Connection conn = JDBCUtil.getConnection();
+		Statement stmt = conn.createStatement();
+
+		stmt.execute(sql);
+
 	}
 
 	public ResultSet search(String sql) throws SQLException {
 		ResultSet rs = null;
-		Connection conn=JDBCUtil.getConnection();
-		Statement stmt=conn.createStatement();
-		try {
-			rs = stmt.executeQuery(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		Connection conn = JDBCUtil.getConnection();
+		Statement stmt = conn.createStatement();
+
+		rs = stmt.executeQuery(sql);
+
 		return rs;
 	}
-	
+
 }
