@@ -1,6 +1,7 @@
 电影查询功能：（以“哪吒之魔童降世”为例）
 1.显示电影表的相关信息(查询某个电影)
 input (movieName)
+
 a.显示电影表内容：
 select * 
 from movie
@@ -16,14 +17,15 @@ where person.personID=Movie_Person.personID
 	and Movie_Person.occupation='导演'
 	and movie.movieID=Movie_Person.movieID
 	and movie.movieName = '哪吒之魔童降世'
+	
 c.显示演员
-
 select name
 from person,Movie_person,movie
 where person.personID=Movie_Person.personID
 	and Movie_Person.occupation='演员'
 	and movie.movieID=Movie_Person.movieID
 	and movie.movieName = '哪吒之魔童降世'
+	
 d.评分（短评+影评）
 select movieName ,AVERAGE
 FROM (select movieID,CAST(AVG(score) as DECIMAL(13,2)) as AVERAGE
@@ -35,14 +37,13 @@ join movie
 on a.movieID = movie.movieID
 where movieName = '哪吒之魔童降世'
 
-
 e.电影短评
 select * 
 from shortreview join movie 
 on shortreview.movieID = movie.movieID
 where movie.movieName = '哪吒之魔童降世'
 
-f.影评  ？？
+f.影评 
 select * 
 from Review join movie
 on movie.movieID = Review.movieID
