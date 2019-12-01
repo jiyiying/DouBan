@@ -6,7 +6,7 @@ select *
 from person
 where name = '饺子'
 
-2.获奖信息
+2.获奖信息（以饺子为例）
 input 饺子
 
 select date, organization ,awardType,movieName
@@ -15,7 +15,7 @@ where person.personID=Awards.personID
 and Awards.movieID = movie.movieID
 and person.name='饺子'
 
-3.参演作品
+3.参演作品（以饺子为例）
 input 饺子
 
 select movieName,occupation,character
