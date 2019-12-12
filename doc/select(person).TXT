@@ -1,4 +1,4 @@
-人物查询--获奖表未设计
+
 1.print person information
 input #{name}
 
