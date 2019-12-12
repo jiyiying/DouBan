@@ -1,0 +1,20 @@
+管理员管理功能
+
+1.添加电影
+insert into movie(movieName,country,language,releaseDate ,length ,profile)
+values('兔女郎','霓虹','日语','2019-10-10',90,'出车祸啦！')
+
+
+2.添加人
+insert into person(name,gender,birthday,birthPlace,profile)
+values('kaerwen','female','1999-01-10','america','new star')
+
+3.添加参演关系
+
+insert into Movie_Person(movieID,personID,occupation,character)
+values(14,14,'演员','蚂蚁')
+
+4.添加获奖信息
+
+insert into awards(personID,date,organization,awardType,movieID)
+values('14','2019-10-10','最佳动漫电影','配音奖','14')
