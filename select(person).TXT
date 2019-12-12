@@ -1,0 +1,25 @@
+人物查询--获奖表未设计
+1.print person information
+input #{name}
+
+select *
+from person
+where name = #{name}
+
+2.award information
+input #{name}
+
+select date, organization ,awardType,movieName
+from person ,Awards,movie
+where person.personID=Awards.personID
+and Awards.movieID = movie.movieID
+and person.name=#{name}
+
+3.person work
+input #{name}
+
+select movieName,occupation,character
+from Movie_Person,movie,person
+where movie.movieID = Movie_Person.movieID
+and person.personID = Movie_Person.personID
+and person.name= #{name}
